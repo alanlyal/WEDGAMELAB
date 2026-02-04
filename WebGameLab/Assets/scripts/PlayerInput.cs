@@ -15,6 +15,7 @@ public class PlayerInput : MonoBehaviour
     [SerializeField, Self] private CharacterController controller;
     [SerializeField, Child] private Camera cam;
     [SerializeField] private float mouseSensY = 5.0f;
+    private float camXRotation;//new
 
     private void OnValidate()
     {
@@ -24,6 +25,7 @@ public class PlayerInput : MonoBehaviour
     {
        move = InputSystem.actions.FindAction("Player/Move");
        look = InputSystem.actions.FindAction("Player/Look");
+        Cursor.lockState = CursorLockMode.Locked;
        
     }
     void Update()
@@ -41,9 +43,13 @@ public class PlayerInput : MonoBehaviour
         //rotation of player
         transform.Rotate(Vector3.up, readLook.x * rotationSpeed * Time.deltaTime);// rotates based off mouse
         //rotate the camera
-        mouseSensY = mouseSensY * readLook.y;
-        mouseSensY = Mathf.Clamp(mouseSensY, -90f, 90f);
-        cam.gameObject.transform.localRotation = Quaternion.Euler(mouseSensY * readLook.y,0,0);
+        //mouseSensY = mouseSensY * readLook.y;
+        //mouseSensY = Mathf.Clamp(mouseSensY, -90f, 90f);
+        //cam.gameObject.transform.localRotation = Quaternion.Euler(mouseSensY * readLook.y, 0, 0);
+        //new stuff from jan 30th
+        camXRotation += mouseSensY * readLook.y * Time.deltaTime * -1;//new
+        camXRotation = Mathf.Clamp(camXRotation, -90f, 90f);//new
+        cam.gameObject.transform.localRotation= Quaternion.Euler(camXRotation,0,0); //new
     }
 }
 
