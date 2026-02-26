@@ -15,6 +15,8 @@ public class PlayerInput : MonoBehaviour
     [SerializeField, Self] private CharacterController controller;
     [SerializeField, Child] private Camera cam;
     [SerializeField] private float mouseSensY = 5.0f;
+    [SerializeField, Scene] private audioController audioController;
+    private InputAction jump;
   
     private float camXRotation;//new
 
@@ -26,8 +28,14 @@ public class PlayerInput : MonoBehaviour
     {
        move = InputSystem.actions.FindAction("Player/Move");
        look = InputSystem.actions.FindAction("Player/Look");
+        jump = InputSystem.actions.FindAction("Player/Jump");
+        jump.started += Jump;
         Cursor.lockState = CursorLockMode.Locked;
        
+    }
+    private void OnDisable()
+    {
+        jump.started -= Jump;
     }
     void Update()
     {
@@ -46,12 +54,18 @@ public class PlayerInput : MonoBehaviour
         camXRotation += mouseSensY * readLook.y * Time.deltaTime * -1;//new
         camXRotation = Mathf.Clamp(camXRotation, -90f, 90f);//new
         cam.gameObject.transform.localRotation= Quaternion.Euler(camXRotation,0,0); //new
+        //jump
+
     }
     public void ChangeMouseSensibility(float value)
     {
         Debug.Log($"value changed {value}");
         mouseSensY = value;
         rotationSpeed = value;
+    }
+    private void Jump(InputAction.CallbackContext context)
+    {
+        throw new System.NotImplementedException();
     }
 }
 
