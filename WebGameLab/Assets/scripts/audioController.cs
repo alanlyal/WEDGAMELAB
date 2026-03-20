@@ -1,7 +1,8 @@
 using System.Collections;
 using UnityEngine;
 
-public class audioController : MonoBehaviour
+public class AudioController : PersistentSingleton<AudioController>
+
 {
     [SerializeField] private AudioClip background;
     [SerializeField] private AudioClip jump;

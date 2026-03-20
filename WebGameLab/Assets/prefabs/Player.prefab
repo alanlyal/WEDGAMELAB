@@ -350,6 +350,7 @@ MonoBehaviour:
   controller: {fileID: 8430009605438205729}
   cam: {fileID: 5747004233376949921}
   mouseSensY: 15
+  audioController: {fileID: 0}
 --- !u!143 &8430009605438205729
 CharacterController:
   m_ObjectHideFlags: 0
