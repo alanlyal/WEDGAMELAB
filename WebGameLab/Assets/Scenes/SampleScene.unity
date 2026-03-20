@@ -1499,7 +1499,7 @@ GameObject:
   - component: {fileID: 1065678668}
   - component: {fileID: 1065678667}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: pause
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
